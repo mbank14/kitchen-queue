@@ -27,3 +27,35 @@ export type IOrderIn  = {
     cancelReason?: string[];
     cancelDetails?: string;
 } & baseOrder;
+
+
+// create interface from menu below
+export interface IMenu {
+    id: string;
+    img: string;
+    name: string;
+    dsc: string;
+    price: number;
+    rate: number;
+    country: string;
+}
+
+export interface ICart {
+    items: IMenu[];
+    total: number;
+}
+
+export interface IUser {
+    id: string;
+    name: string;
+    email: string;
+    address: string;
+    phone: string;
+}
+
+export interface IOrder {
+    id: string;
+    user: IUser;
+    cart: ICart;
+    status: 'pending' | 'completed' | 'canceled';
+}
