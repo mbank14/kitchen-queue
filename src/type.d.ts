@@ -5,7 +5,7 @@ type listOrder = {
     qty: number
 }
 type statusOrderIn = 'new' | 'pending' | 'idle' | 'canceled';
-type statusOrderOut = 'process' | 'done';
+type statusOrderOut = 'process' | 'done' | 'canceled';
 
 interface baseOrder {
     no: number; // no as id

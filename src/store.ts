@@ -100,7 +100,7 @@ export const orderOutDone = (no:number) => {
     })
 }
 
-export const getTotalCanceledOrderIn = computed(() => signalOrderIn.value.reduce((acc, item) => {
+export const getTotalCanceledOrder = computed(() => signalOrderIn.value.reduce((acc, item) => {
     if (item.status === 'canceled') {
         acc.push(item);
     }

@@ -1,7 +1,8 @@
 // import { useState } from "preact/hooks";
 import { IOrderIn } from "../type";
 
-// how to fix parameter component on below
+type orderHandler = (item: IOrderIn) => void;
+
 export const OrderIn = ({
   orderData,
   handlePending,
@@ -10,7 +11,7 @@ export const OrderIn = ({
 }: {
   orderData: IOrderIn[];
   handlePending?: () => void;
-  handleProcess?: () => void;
+  handleProcess?: orderHandler;
   handleCancel?: () => void;
 }) => {
   const statusItem = {
@@ -25,7 +26,13 @@ export const OrderIn = ({
       <div className={`w-full overflow-auto`}>
         {/* slide list of cards */}
         <div className={`flex`}>
-          {orderData.map((item, index) => (
+          {orderData.length === 0  ? 
+            (
+                <div className={`flex justify-center items-center w-full h-[50vh]`}>
+                    <h2 className={`text-2xl font-bold text-black/45`}>Belum ada pesanan masuk !</h2>
+                 </div>
+            )
+          : orderData.map((item, index) => (
             <div>
               <div
                 key={index}
@@ -94,7 +101,7 @@ export const OrderIn = ({
                       )}
                     </div>
                     <button
-                      onClick={handleProcess}
+                      onClick={() => handleProcess?.(item)}
                       className={`bg-sky-400 w-full py-2 rounded-xl`}
                     >
                       Process

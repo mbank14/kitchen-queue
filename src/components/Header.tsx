@@ -1,5 +1,5 @@
 import { useLocation } from "preact-iso";
-import { getTotalCanceledOrderIn, getTotalDoneOrderOut } from "../store";
+import { getTotalCanceledOrder, getTotalDoneOrderOut } from "../store";
 
 export function Header() {
   const { url } = useLocation();
@@ -9,10 +9,10 @@ export function Header() {
       <nav className={`!h-auto flex flex-row justify-between w-full py-3 px-4`}>
         <div>
           <a className={`py-1 px-2 bg-teal-400 hover:cursor-pointer`}>
-            Doned: <span>{getTotalCanceledOrderIn}</span>
+            Doned: <span>{getTotalDoneOrderOut}</span>
           </a>
           <a className={`py-1 px-2 bg-amber-400 hover:cursor-pointer`}>
-            Canceled: <span>{getTotalDoneOrderOut}</span>
+            Canceled: <span>{getTotalCanceledOrder}</span>
           </a>
         </div>
         <div>
