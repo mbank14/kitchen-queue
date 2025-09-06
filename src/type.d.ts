@@ -31,7 +31,7 @@ export type IOrderIn  = {
 
 // create interface from menu below
 export interface IMenu {
-    id: string;
+    id: number;
     img: string;
     name: string;
     dsc: string;
