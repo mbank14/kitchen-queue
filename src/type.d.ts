@@ -38,9 +38,11 @@ export interface IMenu {
     price: number;
     rate: number;
     country: string;
+    qty?: number;
 }
 
 export interface ICart {
+    id: number;
     items: IMenu[];
     total: number;
 }

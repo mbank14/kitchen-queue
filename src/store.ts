@@ -1,6 +1,6 @@
 import { computed, signal } from "@preact/signals";
 
-import {IOrderIn, IOrderOut, baseOrder} from '../src/type'
+import {ICart, IMenu, IOrderIn, IOrderOut, baseOrder} from '../src/type'
 
 export const signalOrderIn = signal<IOrderIn[]>([
     {
@@ -285,3 +285,14 @@ export const burgerMenus = signal([
   },
 
 ])
+
+export const cartItems = signal<ICart[]>([
+  {
+    id: 1,
+    items: [
+      { id: 1, img: "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/132332/artisanal-bread-choose-your-own-3-pack.c64d8dc0584457116b91a24f43cd861c.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1", name: "Orwashers Bakery", dsc: "Artisanal Bread - Choose Your Own 3 Pack", price: 45, rate: 5, country: "New York, NY", qty: 2 },
+      { id: 2, img: "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/132426/bread-choose-your-own-4-pack.78f96938f1a3a5bc6a7fefa564bf878c.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1", name: "Grateful Bread Company", dsc: "Artisanal Bread - Choose Your Own 4 Pack", price: 59, rate: 5, country: "Sacramento, CA", qty: 1 }
+    ],
+    total: 149,
+  }
+]);
