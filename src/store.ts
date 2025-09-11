@@ -39,7 +39,7 @@ export const signalOrderIn = signal<IOrderIn[]>([
         qty: 2,
       },
     ],
-    status: "canceled",
+    status: "new",
   },
   {
     no: 4,
@@ -428,7 +428,7 @@ export const decreaseQty = (menuId: number) => {
 
 // Checkout
 export const infoCheckout = signal<IUser>({
-  id: "1",
+  id: 1,
   name: "Jaka",
   email: "jaka@example.com",
   address: "jl. bolo bolo",
@@ -437,8 +437,8 @@ export const infoCheckout = signal<IUser>({
 
 export const infoOrder = signal<IOrder[]>([
   {
-    id: "1",
-    user: infoCheckout.value,
+    id: 55,
+    // user: infoCheckout.value,
     cart: cartItems.value,
     status: "pending",
   },
@@ -457,7 +457,7 @@ export const addOrder = (order: IOrder) => {
 }
 
 // function update order status after doing checkout
-export const updateOrderStatus = (orderId: string, status: IOrder["status"]) => {
+export const updateOrderStatus = (orderId: number, status: IOrder["status"]) => {
   const current = infoOrder.value;
   infoOrder.value = current.map((order) => {
     if (order.id === orderId) {
@@ -468,10 +468,12 @@ export const updateOrderStatus = (orderId: string, status: IOrder["status"]) => 
 };
 
 // function bring data order to signalOrderIn after doing checkout
-export const addOrderToSignalOrderIn = (order: IOrder) => {
+
+export const addOrderToSignalOrderIn = (order: ICart) => {
+  const current = signalOrderIn.value;
   const newOrderIn: IOrderIn = {
-    no: signalOrderIn.value.length + 1,
-    items: order.cart[0].items.map((item) => ({
+    no: current.length + 1,
+    items: order.items.map((item) => ({
       no: item.id,
       name: item.name,
       qty: item.qty,
@@ -479,4 +481,6 @@ export const addOrderToSignalOrderIn = (order: IOrder) => {
     status: "new",
   };
   signalOrderIn.value = [...signalOrderIn.value, newOrderIn];
+  cartItems.value = [];
+  console.log(signalOrderIn.value);
 };

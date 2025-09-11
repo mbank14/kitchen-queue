@@ -7,7 +7,7 @@ export const Order = () => {
 		<div>
 			<h1>Order Page</h1>
 			<div 
-			className={`grid grid-cols-[3fr_1fr] gap-2 relative p-3`}>
+				className={`grid grid-cols-[3fr_1fr] gap-2 relative p-3`}>
 				<ListItems data={burgerMenus.value} />
 				<Cart />
 			</div>

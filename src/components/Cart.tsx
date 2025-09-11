@@ -1,5 +1,6 @@
+import { Route } from "preact-iso";
 import { formatCurrency } from "../libs/utils/formatCurrency";
-import { cartItems, decreaseQty, increaseQty, removeFromCart } from "../store";
+import {  addOrderToSignalOrderIn, cartItems, decreaseQty, increaseQty, removeFromCart } from "../store";
 import { CButton } from "./CButton";
 
 export const Cart = () => {
@@ -26,14 +27,14 @@ export const Cart = () => {
                     <div key={index} className={`flex flex-row justify-between gap-2`}>
                       <div className={`flex-1`}>
                         <p>{item.name}</p>
-                        <p className={`flex justify-between `}>
+                        <div className={`flex justify-between `}>
                           <span>{formatCurrency(item.price)}</span>
                           <div className={`flex gap-2 flex-row w-17 items-center p-1`}>
                             <a onClick={() => decreaseQty(item.id)}  className={`inline-block h-auto text-white bg-black p-1`}>-</a>
                             <span>x{item.qty}</span>
                             <a onClick={() => increaseQty(item.id)} className={`inline-block h-auto text-white bg-black p-1 cursor-pointer`}>+</a>
                           </div>
-                        </p>
+                        </div>
                       </div>
                       <div className={`flex items-center`}>
                         <a href="" className={``} onClick={()=> removeFromCart(item.id)} >X</a>
@@ -45,7 +46,9 @@ export const Cart = () => {
                   <span>Total:</span>
                   <span>{formatCurrency(cart.total)}</span>
                 </p>
-                <CButton label="Checkout" style={"info"} />
+                {/* <a ></a> */}
+                {/* <CButton label="Checkout" onClick={() => window.location.href = '/checkout'}  style={"info"} /> */}
+                <CButton label="Checkout" onClick={() => addOrderToSignalOrderIn(cart)}  style={"info"} />
               </li>
             ))}
           </ul>

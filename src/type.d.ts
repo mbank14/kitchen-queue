@@ -48,7 +48,7 @@ export interface ICart {
 }
 
 export interface IUser {
-    id: string;
+    id: number;
     name: string;
     email: string;
     address: string;
@@ -56,8 +56,8 @@ export interface IUser {
 }
 
 export interface IOrder {
-    id: string;
-    user: IUser;
+    id: number;
+    // user: IUser;
     cart: ICart[];
     status: 'pending' | 'completed' | 'canceled';
 }

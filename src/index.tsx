@@ -6,6 +6,7 @@ import { Home } from './pages/Home/index.jsx';
 import { NotFound } from './pages/_404.jsx';
 import './style.css';
 import { Order } from './pages/Order/index.js';
+import { Checkout } from './pages/Checkout/index.js';
 
 export function App() {
 	return (
@@ -15,6 +16,7 @@ export function App() {
 				<Router>
 					<Route path="/" component={Home} />
 					<Route path='/order' component={Order} />
+					<Route path='/checkout' component={Checkout} />
 					<Route default component={NotFound} />
 				</Router>
 			</div>

@@ -29,27 +29,32 @@ export function Home() {
     });
   }
 
-  function handleToProcess (item: IOrderIn) {
-	const temp: IOrderOut = {items: item.items, no: item.no, status: 'process', notes: item.notes}
-	
-	signalOrderOut.value = [...signalOrderOut.value, temp]
-	signalOrderIn.value = signalOrderIn.value.filter((i) => i.no !== item.no)
+  function handleToProcess(item: IOrderIn) {
+    const temp: IOrderOut = {
+      items: item.items,
+      no: item.no,
+      status: "process",
+      notes: item.notes,
+    };
 
+    signalOrderOut.value = [...signalOrderOut.value, temp];
+    signalOrderIn.value = signalOrderIn.value.filter((i) => i.no !== item.no);
   }
 
-  function handleProcessToDone (no: number) {
-	console.log(no);
-	signalOrderOut.value = signalOrderOut.value.map((i) => {
-		if(i.no === no) {
-			return {...i, status: 'done'}
-		} else {console.log('data tidak ada');}
-		return i
-	})
-	
+  function handleProcessToDone(no: number) {
+    console.log(no);
+    signalOrderOut.value = signalOrderOut.value.map((i) => {
+      if (i.no === no) {
+        return { ...i, status: "done" };
+      } else {
+        console.log("data tidak ada");
+      }
+      return i;
+    });
   }
 
-  function filteredOrderOut () {
-	return signalOrderOut.value.filter((item) => item.status !== 'done');
+  function filteredOrderOut() {
+    return signalOrderOut.value.filter((item) => item.status !== "done");
   }
 
   return (
@@ -66,8 +71,9 @@ export function Home() {
         <div className={"min-h-[46vh] bg-teal-500 w-full"}>
           <h3>Order Process</h3>
           <OrderOut
-		  	handleDone={handleProcessToDone}
-		   data={filteredOrderOut()} />
+            handleDone={handleProcessToDone}
+            data={filteredOrderOut()}
+          />
         </div>
       </div>
 
@@ -116,16 +122,19 @@ export function Home() {
             </div>
             <div className={`flex flex-col`}>
               {cancelReasonList.map((item) => {
-                return <label htmlFor={item} className={`block`}>
-                  <input id={item}
-                    type="checkbox"
-                    name="cancelReason"
-                    value={item}
-                    checked={selectedCancelReason.includes(item)}
-                    onChange={handleCancelReasonChange}
-                  />
-				  {item}
-                </label>;
+                return (
+                  <label htmlFor={item} className={`block`}>
+                    <input
+                      id={item}
+                      type="checkbox"
+                      name="cancelReason"
+                      value={item}
+                      checked={selectedCancelReason.includes(item)}
+                      onChange={handleCancelReasonChange}
+                    />
+                    {item}
+                  </label>
+                );
               })}
 
               <textarea
@@ -151,7 +160,7 @@ export function Home() {
               <a
                 href=""
                 onClick={() => {
-				// handleToProcess();
+                  // handleToProcess();
                   alert("print details order for chef");
                   setShowCancel(!showCancel);
                 }}
