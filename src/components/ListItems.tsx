@@ -1,4 +1,5 @@
 import { formatCurrency } from "../libs/utils/formatCurrency"
+import { addToCart } from "../store"
 import { IMenu } from "../type"
 
 
@@ -31,7 +32,7 @@ export const ListItems = ({data, handleAddCart}: {
                             </div>
                             <div>
                                 <button 
-                                    onClick={() => handleAddCart?.(item.id as unknown as number)}
+                                    onClick={() => addToCart(item)}
                                     className={`hover:cursor-pointer
                                     bg-teal-500 w-full rounded-xl text-white py-1 mt-2 hover:bg-teal-700`}>Add to cart</button>
                             </div>

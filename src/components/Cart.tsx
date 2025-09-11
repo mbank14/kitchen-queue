@@ -1,5 +1,5 @@
 import { formatCurrency } from "../libs/utils/formatCurrency";
-import { cartItems } from "../store";
+import { cartItems, decreaseQty, increaseQty, removeFromCart } from "../store";
 import { CButton } from "./CButton";
 
 export const Cart = () => {
@@ -28,11 +28,15 @@ export const Cart = () => {
                         <p>{item.name}</p>
                         <p className={`flex justify-between `}>
                           <span>{formatCurrency(item.price)}</span>
-                          <span>x{item.qty}</span>
+                          <div className={`flex gap-2 flex-row w-17 items-center p-1`}>
+                            <a onClick={() => decreaseQty(item.id)}  className={`inline-block h-auto text-white bg-black p-1`}>-</a>
+                            <span>x{item.qty}</span>
+                            <a onClick={() => increaseQty(item.id)} className={`inline-block h-auto text-white bg-black p-1 cursor-pointer`}>+</a>
+                          </div>
                         </p>
                       </div>
                       <div className={`flex items-center`}>
-                        <a href="" className={``} >X</a>
+                        <a href="" className={``} onClick={()=> removeFromCart(item.id)} >X</a>
                       </div>
                     </div>
                   ))}
